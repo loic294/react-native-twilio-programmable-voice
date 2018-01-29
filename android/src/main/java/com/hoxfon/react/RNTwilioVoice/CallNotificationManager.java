@@ -137,8 +137,10 @@ public class CallNotificationManager {
          */
         initIncomingCallChannel(notificationManager);
 
+        System.out.print("VOICE CHANNEL" + VOICE_CHANNEL);
+
         NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(context, VOICE_CHANNEL)
+                new NotificationCompat.Builder(context)
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
                         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setCategory(NotificationCompat.CATEGORY_CALL)
@@ -149,6 +151,7 @@ public class CallNotificationManager {
                         .setAutoCancel(true)
                         .setExtras(extras)
                         .setFullScreenIntent(pendingIntent, true);
+                        ///.setChannelId(VOICE_CHANNEL);
 
         // build notification large icon
         Resources res = context.getResources();
@@ -221,8 +224,10 @@ public class CallNotificationManager {
         /*
          * Create the notification shown in the notification drawer
          */
+
+         // REMOVED VOICE_CHANNEL
         NotificationCompat.Builder notification =
-                new NotificationCompat.Builder(context, VOICE_CHANNEL)
+                new NotificationCompat.Builder(context)
                         .setGroup(MISSED_CALLS_GROUP)
                         .setGroupSummary(true)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -287,7 +292,8 @@ public class CallNotificationManager {
         extras.putString(CALL_SID_KEY, callSid);
         extras.putString(NOTIFICATION_TYPE, ACTION_HANGUP_CALL);
 
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, VOICE_CHANNEL)
+        // REMOVED VOICE_CHANNEL
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(context)
                 .setContentTitle("Call in progress")
                 .setContentText(caller)
                 .setSmallIcon(R.drawable.ic_call_white_24dp)
